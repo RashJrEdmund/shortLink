@@ -32,6 +32,8 @@
             class="hidden md:flex flex-1 w-full h-full min-h-[475px] rounded-md"
         />
 
+        <slot name="forgot-password"/>
+
         {#if pathname === "/create-account"}
             <slot />
         {/if}

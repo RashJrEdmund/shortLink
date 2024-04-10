@@ -1,4 +1,6 @@
 <script lang="ts">
+    import { page } from '$app/stores';
+    import DivTag from '$components/atoms/Div_Tag.svelte';
     import PTag from '$components/atoms/P_Tag.svelte';
     import SpanTag from '$components/atoms/SpanTag.svelte';
     import { useVisitorData } from '@fingerprintjs/fingerprintjs-pro-svelte';
@@ -11,11 +13,22 @@
 
     $: loading = true;
 
+    $: apiStartedLoading = false;
+
+    $: current_user = $page.data?.current_user || null;
+
     $: (() => {
+        if ($isLoading) {
+            apiStartedLoading = true;
+        }
+
         if ($visitor_data)  {
             incognitor_active = $visitor_data.incognito
-            loading = $isLoading;
         }
+
+        loading = (!$isLoading && apiStartedLoading) ? false : true;
+
+        // console.log('isloading', { isLoading: $isLoading, loading, apiStartedLoading, current_user })
     })()
 </script>
 
@@ -28,6 +41,17 @@
     {#if loading}
         <SpanTag success>Loading service...</SpanTag>
     {:else}
-        <slot />
+        {#if $visitor_data || current_user}
+            <slot />
+        {:else}
+            <DivTag
+                class="bg-none flex flex-col items-start justify-start gap-2 p-2"
+            >
+                <SpanTag success>If you are seeing this message, then an API KEY</SpanTag>
+                <SpanTag success>of an important API used by this app is expired</SpanTag>
+                <SpanTag success>I also cannot allow you shortening links without logging in or signing up</SpanTag>
+                <SpanTag success>If you wanna shorten links without authenticating your self, please contact the admins so we could update our API keys</SpanTag>
+            </DivTag>
+        {/if}
     {/if}
 {/if}
