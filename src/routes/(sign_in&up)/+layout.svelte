@@ -32,7 +32,9 @@
             class="hidden md:flex flex-1 w-full h-full min-h-[475px] rounded-md"
         />
 
-        {#if pathname === "/create-account"}
+        <!-- <slot name="forgot-password"/> -->
+
+        {#if ["/create-account", "/forgot-password"].includes(pathname)}
             <slot />
         {/if}
     </div>

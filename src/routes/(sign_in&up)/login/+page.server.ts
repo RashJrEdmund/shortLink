@@ -35,7 +35,8 @@ export const actions: Actions = {
                 status: 200,
                 current_user: user,
             };
-        } catch {
+        } catch(ee) {
+            console.log({ee})
             return {
                 messsage: "AN_ERROR_OCCURED",
                 status: 500,

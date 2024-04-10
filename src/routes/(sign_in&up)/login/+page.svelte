@@ -96,9 +96,9 @@
         </SpanTag>
     </TextField>
 
-    <ATag is_link path="/forgot-password" sx="self-end mt-5">
+    <!-- <ATag is_link path="/forgot-password" sx="self-end mt-5">
         Forgot password
-    </ATag>
+    </ATag> -->
 
     <Button sx="mt-5" type="submit">Log me in</Button>
 

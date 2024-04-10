@@ -10,8 +10,7 @@
     export let sx: string = ""; // add extra styling
 
     export let path: string = "";
-
-
+    export let target: "_self" | "_parent" | "_top" | "_blank" = "_self";
 
     export let action = () => null;
 </script>
@@ -23,6 +22,7 @@
     data-sveltekit-preload-data="hover"
     on:click={action}
     href={path}
+    target={target}
     {...$$restProps}
     style={`color: ${
         pink_alert
