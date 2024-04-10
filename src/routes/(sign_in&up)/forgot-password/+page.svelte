@@ -44,6 +44,6 @@
     }
 </script>
 
-<form slot="forgot-password">
+<form ><!-- slot="forgot-password" attribute -->
     forgot password
 </form>
